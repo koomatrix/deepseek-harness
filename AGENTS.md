@@ -12,46 +12,41 @@ Public APIs are pre-stable; update every consumer. [Session version/status](docs
 
 ```
 vendor/      Vendored Cordis source — manifest + sync procedure in vendor/README.md
+apps/        cli, web, desktop, desktop-host
 packages/    @deepseek-ai/dsh-<pkg> workspaces at packages/<group>/<pkg>/
   core/        product API spine: session, system-prompt, tools, agent, agent-loop
   api/         Remote BFF assembly and Typert RPC gateway
   typert/      type graph generator, loader, and runtime registry
+  goal/ schedule/ feedback/ identity/  goals, follow-ups, feedback, anonymous identity
   llm/         LLM capability: Service Definition/Consumer + DeepSeek providers
-  e2b/         E2B POC: sandbox + FS/subprocess adapters
-  shell/        bash capability: Service Definition + local/pwsh providers + shell Consumers
-  subprocess/  subprocess capability + local process-tree provider + shared Win32 library
-  terminal/         persistent sessions
-  fs/          filesystem capability + policy
-  lsp/         language-server capability
-  skill/       skill provider registry + local impl + catalog/loader tool
-  web/         web capability: Service Definition + search/fetch providers + tool Consumer
-  compaction/     compaction capability + basic provider
-  context/     request-context plugins
-  subagent/    subagent capability: Service Definition + providers + delegation Consumers
-  bundle/      installable dsh --profile patch-layer bundles
-  workflow/    workflow capability + worker-thread provider + tool Consumer
-  webhook/     webhook ingress
-  todo/        todo_write tool
-  plan/        plan mode as logged state
-  preset/      per-session agent composition from preset cordis.yml files
+  e2b/         E2B POC: remote-runtime providers
+  sandbox/ code-runtime/  process confinement; worker-thread code execution + PTC Consumer
+  shell/ subprocess/ terminal/  bash, process-tree, persistent-PTY capability families
+  fs/ lsp/     filesystem and language-server capability families
+  skill/ mcp/  skill registry/loader; MCP server tools as native tools
+  web/         web capability: search/fetch providers + tool Consumer
+  compaction/ context/  compaction capability; model-visible request context
+  subagent/ jobs/ workflow/  delegation, background jobs, worker-thread workflows + ralph
+  webhook/     verified external-event ingress
+  attachment/ spill/ storage/  attachments, tool-result spill, non-session storage
+  todo/ plan/  todo_write tool; plan mode as logged state
+  preset/ bundle/  per-session composition from preset cordis.yml; installable patch layers
   guard/       loop-hygiene + tool-timeout plugins
-  self-modification/  the agent inspects/mounts its own plugins
+  extensions/  the agent inspects/mounts its own plugins
   hooks/       Claude Code/Codex hook bridges + wire-protocol library
-  session/     durable session data: persistence, projection, titles, telemetry
-  identity/    anonymous identity
-  settings/    user-settings capability + file provider
-  credentials/ credential/authorization capabilities + env/.env provider
-  acp/         automation-only Agent Client Protocol server
+  session/ session-query/  durable session data; retrieval and search
+  settings/ credentials/  user settings; credentials/authorization
+  acp/ sdk/  automation-only ACP server; JSON-RPC SDK
   interaction/ approval/interaction capabilities, permission, commands, ask-user
-  boot/        shared profile/application boot glue
-  sdk/         JSON-RPC protocol + TypeScript client/server
-  experimental/ pre-stable prototypes; private by default with explicit public exceptions
-  support/     dev/test infrastructure
-  util/        zero-dependency utilities
+  boot/ host/ client/  app boot glue; Web-GUI host half; browser shell + ui-* plugins
+  experimental/ pre-stable prototypes; private by default
+  test-support/ runtime-diagnostics/ util/  testkits, replay, mocks; invariant checks; zero-dep utilities
 python/      Python SDK/runtime (see python/README.md)
 native/      @deepseek-ai/node-addon-system source of record (see native/README.md)
 benchmarks/  performance gates
-.agents/     Agent workflows and Agent Notes (`notes/`)
+snapshots/   recorded-session replay fixtures (see snapshots/AGENTS.md)
+patches/     pnpm dependency patches
+.agents/     Agent skills and Agent Notes (notes/)
 docs/        architecture, generated catalogs, postmortems, cookbook (see docs/AGENTS.md)
 scripts/     gates and generators
 website/     VitePress projection of selected bilingual docs/ sources
